@@ -1,0 +1,10 @@
+{
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier"],
+  "rules": {
+    "scss/dollar-variable-pattern": [
+      "^[a-z][a-zA-Z0-9]+$",
+      { "message": "Expected variable to be camelCase " }
+    ],
+    "scss/double-slash-comment-empty-line-before": null
+  }
+}
