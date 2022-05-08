@@ -8,5 +8,5 @@ export const KeyService = {
     key: string,
     childKey: number,
     { separator = KEY_SEPARATOR } = {},
-  ): string => `${key}${separator}${childKey}`,
+  ): string => (key ? `${key}${separator}${childKey}` : `${childKey}`),
 }

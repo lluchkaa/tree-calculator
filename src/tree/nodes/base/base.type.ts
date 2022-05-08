@@ -8,7 +8,7 @@ export type BaseNode<
   T extends NodeType | null = NodeType | null,
   V = unknown,
 > = {
-  type: T
+  type: T | null
   value: V | null
   children: BaseNode[] | null
 }

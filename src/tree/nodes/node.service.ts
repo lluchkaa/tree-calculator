@@ -5,13 +5,14 @@ import { AttributeService } from './attribute'
 import { ConstantService } from './constant'
 import { OperationService } from './operation'
 
-const SERVICES = {
-  [NodeType.constant]: ConstantService,
-  [NodeType.attribute]: AttributeService,
-  [NodeType.operation]: OperationService,
-}
-
 export const NodeService = {
+  service: (type: NodeType) =>
+    ({
+      [NodeType.constant]: ConstantService,
+      [NodeType.attribute]: AttributeService,
+      [NodeType.operation]: OperationService,
+    }[type]),
+
   getNodeByKey: (start: BaseNode, key: string | number[]): BaseNode | null => {
     const keyList = Array.isArray(key) ? key : KeyService.splitKey(key)
     try {
@@ -32,6 +33,17 @@ export const NodeService = {
       return null
     }
 
-    return SERVICES[node.type]?.calculateValue(node as never, options)
+    return NodeService.service(node.type)?.calculateValue(
+      node as never,
+      options,
+    )
+  },
+
+  canHaveMoreChildren: (node: BaseNode) => {
+    if (!node.type) {
+      return null
+    }
+
+    return NodeService.service(node.type)?.canHaveMoreChildren(node as never)
   },
 }
