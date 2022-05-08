@@ -18,10 +18,6 @@ export const Children = ({ node, nodeKey }: Props) => {
   const nodeChildren = useMemo(
     () =>
       node.children?.map((childNode, index) => (
-        // const Component = getComponent(node)
-        // if (!Component) {
-        //   return null
-        // }
         <ContainerComponentNode
           key={index}
           nodeKey={KeyService.appendKey(nodeKey, index)}

@@ -9,8 +9,10 @@ export const Tree = () => {
 
   return (
     <>
-      <pre>{JSON.stringify(tree, null, 8)}</pre>
-      <ContainerComponentNode nodeKey="" />
+      <div className="tree-container">
+        <ContainerComponentNode nodeKey="" />
+      </div>
+      <pre>{JSON.stringify(tree, null, 4)}</pre>
     </>
   )
 }

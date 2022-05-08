@@ -20,6 +20,6 @@ export type BaseService<
   O extends Record<string, unknown> = Record<string, unknown>,
 > = {
   canHaveMoreChildren: (node: BaseNode<T, V>) => boolean
-  haveValue: (node: BaseNode<T, V>, options?: O) => boolean
+  hasValueReady: (node: BaseNode<T, V>, options?: O) => boolean
   calculateValue: (node: BaseNode<T, V>, options?: O) => CV | null
 }

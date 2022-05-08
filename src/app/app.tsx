@@ -7,6 +7,7 @@ import { AttributesProvider } from '../attributes/provider'
 
 import '../styles/reset.css'
 import '../styles/normalize.css'
+import '../styles/tree.css'
 
 export const App = () => (
   <AttributesProvider>

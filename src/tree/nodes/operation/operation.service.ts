@@ -19,7 +19,13 @@ export const OperationService: BaseService<
       }
     }
   },
-  haveValue: (node) => node.value !== null,
+  hasValueReady: (node, options) =>
+    (node.value !== null &&
+      (node.children?.length ?? 0) > 0 &&
+      node.children?.every((child) =>
+        NodeService.hasValueReady(child, options),
+      )) ??
+    false,
   calculateValue: (node, options) => {
     switch (node.value) {
       case OperationType.and: {

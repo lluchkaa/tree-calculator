@@ -4,6 +4,7 @@ import { useTree } from '../../hooks'
 import { OPERATION_TYPES, OperationNode } from '../../nodes/operation'
 import { Children } from '../children'
 import { DeleteNodeButton } from '../delete-node-button'
+import { NodeValueComponent } from '../node-value'
 
 type Props = {
   node: OperationNode
@@ -34,9 +35,10 @@ export const OperationNodeComponent = ({ node, nodeKey }: Props) => {
     <div className="node operation-node">
       <div className="controls">
         <select value={node.value ?? undefined} onChange={onOperationSelect}>
-          <option value="">----</option>
+          <option value="">-----</option>
           {options}
         </select>
+        <NodeValueComponent node={node} />
         <DeleteNodeButton nodeKey={nodeKey} />
       </div>
       <Children node={node} nodeKey={nodeKey} />

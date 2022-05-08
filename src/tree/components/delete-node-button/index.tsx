@@ -14,7 +14,7 @@ export const DeleteNodeButton = ({ nodeKey }: Props) => {
   }, [deleteNode, nodeKey])
 
   return (
-    <button type="button" onClick={onDelete}>
+    <button type="button" onClick={onDelete} className="delete-node">
       x
     </button>
   )

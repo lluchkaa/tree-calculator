@@ -5,6 +5,7 @@ import { useTree } from '../../hooks'
 
 import { ConstantNode } from '../../nodes/constant'
 import { DeleteNodeButton } from '../delete-node-button'
+import { NodeValueComponent } from '../node-value'
 
 type Props = {
   node: ConstantNode
@@ -26,7 +27,7 @@ export const ConstantNodeComponent = ({ node, nodeKey }: Props) => {
 
   const onConstantSelect = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
-      updateNode(nodeKey, { value: event.target.value })
+      updateNode(nodeKey, { value: event.target.value === 'true' })
     },
     [updateNode, nodeKey],
   )
@@ -35,8 +36,10 @@ export const ConstantNodeComponent = ({ node, nodeKey }: Props) => {
     <div className="node operation-node">
       <div className="controls">
         <select value={node.value as never} onChange={onConstantSelect}>
+          <option value="">-----</option>
           {options}
         </select>
+        <NodeValueComponent node={node} />
         <DeleteNodeButton nodeKey={nodeKey} />
       </div>
       <Children node={node} nodeKey={nodeKey} />

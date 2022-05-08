@@ -11,7 +11,7 @@ export const AttributeService: BaseService<
   AttributeServiceOptions
 > = {
   canHaveMoreChildren: () => false,
-  haveValue: (node, { attributes = {} } = {}) =>
+  hasValueReady: (node, { attributes = {} } = {}) =>
     node.value !== null && attributes[node.value] !== undefined,
   calculateValue: (node, { attributes = {} } = {}) =>
     node.value ? attributes[node.value] : null,

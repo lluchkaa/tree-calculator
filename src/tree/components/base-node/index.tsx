@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from 'react'
 import { useTree } from '../../hooks'
 
 import { BaseNode, NODE_TYPES, NodeType } from '../../nodes/base'
+import { DeleteNodeButton } from '../delete-node-button'
 
 type Props = {
   node: BaseNode
@@ -30,10 +31,13 @@ export const BaseNodeComponent = ({ node, nodeKey }: Props) => {
 
   return (
     <div className="node operation-node">
-      <select value={node.type ?? undefined} onChange={onTypeSelect}>
-        <option value="">---</option>
-        {options}
-      </select>
+      <div className="controls">
+        <select value={node.type ?? undefined} onChange={onTypeSelect}>
+          <option value="">-----</option>
+          {options}
+        </select>
+        <DeleteNodeButton nodeKey={nodeKey} />
+      </div>
     </div>
   )
 }

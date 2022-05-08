@@ -34,3 +34,7 @@ button {
 .children {
   padding-left: 2rem;
 }
+
+pre {
+  font-family: monospace;
+}

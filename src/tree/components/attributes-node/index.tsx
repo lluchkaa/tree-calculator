@@ -5,6 +5,7 @@ import { useTree } from '../../hooks'
 
 import { AttributeNode } from '../../nodes/attribute'
 import { DeleteNodeButton } from '../delete-node-button'
+import { NodeValueComponent } from '../node-value'
 import { useAttributes } from '../../../attributes/hooks'
 
 type Props = {
@@ -39,6 +40,7 @@ export const AttributeNodeComponent = ({ node, nodeKey }: Props) => {
         <select value={node.value as never} onChange={onAttributeSelect}>
           {options}
         </select>
+        <NodeValueComponent node={node} />
         <DeleteNodeButton nodeKey={nodeKey} />
       </div>
       <Children node={node} nodeKey={nodeKey} />

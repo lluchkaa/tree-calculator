@@ -39,6 +39,14 @@ export const NodeService = {
     )
   },
 
+  hasValueReady: (node: BaseNode, options?: Record<string, unknown>) => {
+    if (!node.type) {
+      return null
+    }
+
+    return NodeService.service(node.type)?.hasValueReady(node as never, options)
+  },
+
   canHaveMoreChildren: (node: BaseNode) => {
     if (!node.type) {
       return null
