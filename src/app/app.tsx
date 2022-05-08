@@ -1,3 +1,9 @@
 import React from 'react'
 
-export const App = () => <div />
+import { TreeProvider } from '../tree/provider'
+
+export const App = () => (
+  <TreeProvider>
+    <div />
+  </TreeProvider>
+)
