@@ -1,2 +1,2 @@
-export { TreeProvider } from './provider'
 export { TreeContext } from './context'
+export { TreeProvider } from './provider'

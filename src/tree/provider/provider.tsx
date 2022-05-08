@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react'
 
+import { BaseNode, createBaseNode } from '../nodes/base'
 import { TreeContext, TreeContextType } from './context'
-import { createBaseNode } from '../nodes/base'
 import { TreeActions } from './actions'
 
 type Props = {
@@ -17,12 +17,35 @@ export const TreeProvider = ({ children }: Props) => {
     [],
   )
 
+  const updateNode = useCallback(
+    (key: string, params: Partial<BaseNode>) =>
+      setTree((prevTree) =>
+        TreeActions.updateNode(prevTree, {
+          key,
+          params,
+        }),
+      ),
+    [],
+  )
+
+  const deleteNode = useCallback(
+    (key: string) =>
+      setTree((prevTree) =>
+        TreeActions.deleteNode(prevTree, {
+          key,
+        }),
+      ),
+    [],
+  )
+
   const contextValue = useMemo<TreeContextType>(
     () => ({
       tree,
       addNode,
+      updateNode,
+      deleteNode,
     }),
-    [tree, addNode],
+    [tree, addNode, updateNode, deleteNode],
   )
 
   return (
