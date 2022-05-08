@@ -1,20 +1,28 @@
-import React, { useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 
+import { TreeContext, TreeContextType } from './context'
 import { createBaseNode } from '../nodes/base'
-import { TreeContext } from './context'
+import { TreeActions } from '../actions'
 
 type Props = {
   children?: React.ReactNode
 }
 
 export const TreeProvider = ({ children }: Props) => {
-  const [tree] = useState(createBaseNode())
+  const [tree, setTree] = useState(createBaseNode())
 
-  const contextValue = useMemo(
+  const addNode = useCallback(
+    (key: string) =>
+      setTree((prevTree) => TreeActions.addNode(prevTree, { key })),
+    [],
+  )
+
+  const contextValue = useMemo<TreeContextType>(
     () => ({
       tree,
+      addNode,
     }),
-    [tree],
+    [tree, addNode],
   )
 
   return (
