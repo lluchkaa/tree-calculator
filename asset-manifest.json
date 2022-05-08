@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/tree-calculator/static/css/main.67c61db1.css",
+    "main.js": "/tree-calculator/static/js/main.23bbd380.js",
+    "static/js/787.ecd1b275.chunk.js": "/tree-calculator/static/js/787.ecd1b275.chunk.js",
+    "index.html": "/tree-calculator/index.html",
+    "main.67c61db1.css.map": "/tree-calculator/static/css/main.67c61db1.css.map",
+    "main.23bbd380.js.map": "/tree-calculator/static/js/main.23bbd380.js.map",
+    "787.ecd1b275.chunk.js.map": "/tree-calculator/static/js/787.ecd1b275.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67c61db1.css",
+    "static/js/main.23bbd380.js"
+  ]
+}
