@@ -1,2 +1,2 @@
 export type { AttributeNode } from './attribute.type'
-export { createAttributeNode } from './attribute.node'
+export { AttributeService } from './attribute.service'

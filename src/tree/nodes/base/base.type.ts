@@ -1,7 +1,7 @@
 export enum NodeType {
-  operation,
-  constant,
-  attribute,
+  operation = 'operation',
+  constant = 'constant',
+  attribute = 'attribute',
 }
 
 export type BaseNode<
@@ -11,4 +11,15 @@ export type BaseNode<
   type: T
   value: V | null
   children: BaseNode[] | null
+}
+
+export type BaseService<
+  T extends NodeType | null = NodeType | null,
+  V = unknown,
+  CV = unknown,
+  O extends Record<string, unknown> = Record<string, unknown>,
+> = {
+  canHaveMoreChildren: (node: BaseNode<T, V>) => boolean
+  haveValue: (node: BaseNode<T, V>, options?: O) => boolean
+  calculateValue: (node: BaseNode<T, V>, options?: O) => CV | null
 }

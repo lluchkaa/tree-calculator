@@ -1,5 +1,15 @@
-import { BaseNode } from './base'
+import { BaseNode, NodeType } from './base'
 import { KeyService } from '../key'
+
+import { AttributeService } from './attribute'
+import { ConstantService } from './constant'
+import { OperationService } from './operation'
+
+const SERVICES = {
+  [NodeType.constant]: ConstantService,
+  [NodeType.attribute]: AttributeService,
+  [NodeType.operation]: OperationService,
+}
 
 export const NodeService = {
   getNodeByKey: (start: BaseNode, key: string | number[]): BaseNode | null => {
@@ -15,5 +25,13 @@ export const NodeService = {
     } catch (e) {
       return null
     }
+  },
+
+  calculateValue: (node: BaseNode, options?: Record<string, unknown>) => {
+    if (!node.type) {
+      return null
+    }
+
+    return SERVICES[node.type]?.calculateValue(node as never, options)
   },
 }

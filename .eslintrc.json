@@ -79,7 +79,8 @@
       {
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "react/no-array-index-key": "off"
   },
   "overrides": [
     {
