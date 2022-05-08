@@ -38,6 +38,7 @@ export const AttributeNodeComponent = ({ node, nodeKey }: Props) => {
     <div className="node operation-node">
       <div className="controls">
         <select value={node.value as never} onChange={onAttributeSelect}>
+          <option value="">-----</option>
           {options}
         </select>
         <NodeValueComponent node={node} />

@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
+import { AttributeItem } from '../attribute.types'
 
 import { AttributesContext, AttributesContextType } from './context'
 
@@ -7,33 +8,65 @@ type Props = {
 }
 
 export const AttributesProvider = ({ children }: Props) => {
-  const [attributes, setAttributes] = useState<Record<string, boolean>>({})
+  const [attributesList, setAttributesList] = useState<AttributeItem[]>([])
+
+  const attributes = useMemo(
+    () =>
+      attributesList.reduce((acc, { key, value }) => {
+        acc[key] = value
+        return acc
+      }, {} as AttributesContextType['attributes']),
+    [attributesList],
+  )
+
+  const addAttribute = useCallback(
+    ({ key = '', value = false }: Partial<AttributeItem> = {}) => {
+      setAttributesList((prev) => [...prev, { key, value }])
+    },
+    [],
+  )
 
   const updateAttribute = useCallback(
-    (key: string, value: boolean) =>
-      setAttributes((prev) => ({
-        ...prev,
-        [key]: value,
-      })),
+    (index: number, item: Partial<AttributeItem> = {}) =>
+      setAttributesList((prev) => {
+        if (prev.length <= index || index < 0) {
+          return prev
+        }
+        return [
+          ...prev.slice(0, index),
+          { ...prev[index], ...item },
+          ...prev.slice(index + 1),
+        ]
+      }),
     [],
   )
 
   const deleteAttribute = useCallback(
-    (key: string) =>
-      setAttributes(({ ...prev }) => {
-        delete prev[key]
-        return prev
+    (index: number) =>
+      setAttributesList((prev) => {
+        if (prev.length <= index || index < 0) {
+          return prev
+        }
+        return [...prev.slice(0, index), ...prev.slice(index + 1)]
       }),
     [],
   )
 
   const contextValue = useMemo<AttributesContextType>(
     () => ({
+      attributesList,
       attributes,
+      addAttribute,
       updateAttribute,
       deleteAttribute,
     }),
-    [attributes, updateAttribute, deleteAttribute],
+    [
+      attributesList,
+      attributes,
+      addAttribute,
+      updateAttribute,
+      deleteAttribute,
+    ],
   )
 
   return (

@@ -1,0 +1,8 @@
+.info {
+  width: 100%;
+  display: flex;
+}
+
+.info pre {
+  flex-grow: 1;
+}
