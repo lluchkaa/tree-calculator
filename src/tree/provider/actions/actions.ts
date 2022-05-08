@@ -1,7 +1,7 @@
 import { produce } from 'immer'
 
-import { BaseNode, createBaseNode } from '../nodes/base'
-import { NodeService } from '../nodes'
+import { BaseNode, createBaseNode } from '../../nodes/base'
+import { NodeService } from '../../nodes'
 
 import { AddNodeOptions } from './actions.types'
 
