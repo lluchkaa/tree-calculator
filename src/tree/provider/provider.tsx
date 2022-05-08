@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 
 import { TreeContext, TreeContextType } from './context'
 import { createBaseNode } from '../nodes/base'
-import { TreeActions } from '../actions'
+import { TreeActions } from './actions'
 
 type Props = {
   children?: React.ReactNode
